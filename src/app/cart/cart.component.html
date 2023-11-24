@@ -1,0 +1,30 @@
+<div class="container">
+    <div class=" py-5">
+        <h2 class="text-center text-main ">All Cart Products</h2>
+    <button *ngIf="ItemsNo" (click)="RemoveAllCart()" class="btn btn-danger ">Clear Cart</button>
+    </div>
+    <div class="row align-items-center" *ngFor="let item of allCartProduct">
+        <div class="col-md-3">
+            <div>
+                <img [src]="item.product.imageCover" class="w-100" alt="">
+            </div>
+        </div>
+        <div class="col-md-3">
+            <p class="text-main">{{item.product.title}}</p>
+            <p class="text-muted">{{item.product.category.name}}</p>
+            <p>price: {{item.price}}</p>
+            <p>counts: {{item.count}}</p>
+            <i (click)="RemoveItem(item.product._id)" class="fa-solid fa-trash text-danger cursor-pointer"></i>
+        </div>
+        <div class="col-md-3 offset-3 d-flex gap-3">
+            <span (click)="UpdateCounts(item.product._id , item.count+1)"><i class="fa-solid fa-circle-plus text-success cursor-pointer"></i></span>
+            <span>1</span>
+            <span (click)="UpdateCounts(item.product._id , item.count-1)"><i class="fa-solid fa-circle-minus text-danger cursor-pointer"></i></span>
+        </div>
+    </div>
+    <div class="d-flex justify-content-between align-items-center mb-5" >
+        <button *ngIf="ItemsNo" class="text-white btn bg-main" [routerLink]="['/CheckOut',cartId]">CheckOut</button>
+        <p class="text-main fw-bolder ">Total Price : {{totalPrice}}</p>
+   
+    </div>
+</div>

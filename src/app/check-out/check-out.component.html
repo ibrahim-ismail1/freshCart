@@ -1,0 +1,31 @@
+<div class="container m-5 p-5">
+    <form [formGroup]="payForm" (ngSubmit)="paySubmit(payForm)">
+        <div>
+            <label for="">Deatils</label>
+            <input type="text" name="" class="form-control" formControlName="details" id="">
+            
+        </div>
+        <div>
+            <label for="">Phone</label>
+            <input type="text" name="" class="form-control" formControlName="phone" id="">
+            <div class="alert alert-danger" *ngIf="payForm.get('phone')?.errors && payForm.get('phone')?.touched">
+                <p *ngIf="payForm.get('phone')?.errors?.['required']">Phone number is required</p>
+                <p *ngIf="payForm.get('phone')?.errors?.['pattern']">Phone number is invalid</p>
+            </div>
+        </div>
+        <div>
+            <label for="">City</label>
+            <input type="text" name="" class="form-control" formControlName="city" id="">
+            <div class="alert alert-danger" *ngIf="payForm.get('city')?.errors && payForm.get('city')?.touched">
+                <p *ngIf="payForm.get('city')?.errors?.['required']">city is required</p>
+                
+            </div>
+        </div>
+        <div class="p-3"> 
+           
+            <button (click)=" PaymentWay(true)" [disabled]="payForm.invalid" class="m-2 p-2 text-main" type="submit">Cridet <i class="fa-solid fa-credit-card" ></i></button>
+            <button (click)=" PaymentWay(false)" [disabled]="payForm.invalid" type="submit" class="m-2 p-2 text-info">Cash <i class="fa-solid fa-money-bill"></i></button>
+        </div>
+       
+    </form>
+</div>

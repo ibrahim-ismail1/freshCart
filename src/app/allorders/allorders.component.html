@@ -1,0 +1,21 @@
+<div class="container mt-5">
+    <div class="row m-3 border rounded-pill p-5 align-items-center" *ngFor="let item of allOeders">
+        <div class="col-md-4" >
+           <div *ngFor="let cartItems of item.cartItems" class="d-flex align-items-center justify-content-center">
+            <img [src]="cartItems.product.imageCover" alt="" class="w-25" >
+           </div>
+        </div>
+        <div class="col-md-4">
+            <h4>Shipping Deatils :</h4>
+            <p>deatils : {{item.shippingAddress.details}}</p>
+            <p> Phone number: {{item.shippingAddress.phone}}</p>
+            <p> City:  {{item.shippingAddress.city}}</p>
+        </div>
+        <div class="col-md-4">
+            <h4>Payments Deatils :</h4>
+            <p>shipping Price :{{item.shippingPrice}}</p>
+            <p>Total Price : {{item.totalOrderPrice}}</p>
+            <p>Payment Way : {{item.paymentMethodType}}</p>
+        </div>
+    </div>
+</div>

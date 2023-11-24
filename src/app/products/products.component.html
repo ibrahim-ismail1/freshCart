@@ -1,0 +1,23 @@
+<div class="container ">
+    <input type="text" class="form-control m-5 w-75 ms-auto me-auto" [(ngModel)]="searchText" placeholder="Enter Product Name..." (ngModelChange)="search()" >
+   
+    <div class="row gy-3 ">
+        
+        <div class="col-md-2 product text-center cursor-pointer" *ngFor="let item of fillterProduct">
+            <div class="ProductItem w-100"  [routerLink]="['/productDeatils',item._id]">
+                <img [src]="item?.imageCover" class="w-100" alt="">
+                <p class="text-main">{{item?.category?.name}}</p>
+                <p class="text-muted">{{item?.title}}</p>
+                <div class="d-flex justify-content-between">
+                    <span>{{item?.price}}</span>
+                    <span><i class="fa-solid fa-star text-main"></i> {{item?.ratingsAverage}}</span>
+                </div>
+            </div>
+           <div class="d-flex justify-content-between align-items-center">
+            <button class="btn bg-main text-white mt-2" (click)="AddCart(item._id)">Add To Cart</button>
+            <i *ngIf="!wishListIds.includes($any(item._id))" class="fa-regular fa-heart fs-4 heart"  (click)="AddWishlist(item._id)"></i>
+            <i *ngIf="wishListIds.includes($any(item._id))" class="fa-solid fa-heart fs-4 text-danger" (click)="deleteItemFromWhis(item._id)"></i>
+           </div>
+        </div>
+    </div>
+</div>
